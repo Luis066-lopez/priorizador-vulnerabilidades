@@ -1,0 +1,13 @@
+# Revisiones que corren solas antes de cada commit (se activan con: pre-commit install).
+# Las versiones quedan fijadas por commit (SHA) con: pre-commit autoupdate --freeze
+repos:
+  # gitleaks: frena el commit si encuentra una clave, token o contrasena.
+  - repo: https://github.com/gitleaks/gitleaks
+    rev: 2ca41cc1372d1e939a6a879f18cdc19fc1cac1ce  # frozen: v8.30.0
+    hooks:
+      - id: gitleaks
+  # ruff: revisa estilo, errores probables y patrones inseguros del codigo Python.
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: 25bcf95026b96e2dd3c0aec3090c3d6ef6ca2e6c  # frozen: v0.17.3
+    hooks:
+      - id: ruff-check

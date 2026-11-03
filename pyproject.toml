@@ -1,0 +1,41 @@
+[build-system]
+requires = ["setuptools>=77"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "priorizador"
+# La version se lee de src/priorizador/__init__.py (un solo lugar para cambiarla).
+dynamic = ["version"]
+description = "Prototipo de tesis: prioriza vulnerabilidades de dependencias dentro del pipeline de CI/CD."
+readme = "README.md"
+requires-python = ">=3.12"
+license = "MIT"
+license-files = ["LICENSE"]
+authors = [{ name = "Jorge Luis Dueñas Lopez" }]
+dependencies = []
+
+[tool.setuptools.dynamic]
+version = { attr = "priorizador.__version__" }
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py312"
+src = ["src", "tests"]
+
+[tool.ruff.lint]
+# E/W: estilo (pycodestyle), F: errores (pyflakes), I: orden de imports,
+# B: errores probables (bugbear), UP: sintaxis moderna, S: reglas de seguridad (bandit).
+select = ["E", "W", "F", "I", "B", "UP", "S"]
+
+[tool.ruff.lint.per-file-ignores]
+# En las pruebas, assert es la forma normal de comprobar resultados.
+"tests/**" = ["S101"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+# Permite importar el paquete desde src/ sin instalarlo.
+pythonpath = ["src"]
+addopts = "-ra"

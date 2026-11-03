@@ -1,0 +1,35 @@
+# Entorno virtual y archivos generados por Python
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+*.egg-info/
+build/
+dist/
+.pytest_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# Secretos: el .env nunca se sube (la plantilla .env.example si)
+.env
+
+# Datos, experimentos y repositorio de demostracion: viven fuera de Git
+datos/
+mlruns/
+demo/
+
+# Modelos entrenados: por ahora no se versionan
+*.joblib
+
+# Respaldos del arranque de Windows (bcdedit /export)
+*.bcd
+
+# Permisos locales de Claude Code en esta PC (no se publican)
+.claude/settings.local.json
+
+# Editores y archivos del sistema
+.vscode/
+.idea/
+Thumbs.db
+Desktop.ini

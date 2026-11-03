@@ -1,0 +1,14 @@
+# Dependabot revisa una vez por semana si hay versiones nuevas y abre un Pull Request.
+version: 2
+updates:
+  # Dependencias de Python (requirements-dev.txt)
+  - package-ecosystem: "pip"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+
+  # Acciones de GitHub usadas en los workflows (actualiza el SHA y su comentario)
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"

@@ -1,0 +1,37 @@
+# CI del propio prototipo: en cada push y en cada Pull Request revisa estilo,
+# corre las pruebas y audita las dependencias de desarrollo.
+name: CI
+
+on:
+  push:
+  pull_request:
+
+# Permisos minimos: el workflow solo puede leer el codigo.
+permissions:
+  contents: read
+
+jobs:
+  pruebas:
+    runs-on: ubuntu-latest
+    steps:
+      # Acciones fijadas por commit (SHA completo); el comentario dice la version.
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          # No deja el token de GitHub guardado en el disco del runner.
+          persist-credentials: false
+
+      - uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1 # v6.3.0
+        with:
+          python-version: "3.12"
+
+      - name: Instalar dependencias de desarrollo
+        run: python -m pip install -r requirements-dev.txt
+
+      - name: Revisar el codigo con ruff
+        run: ruff check .
+
+      - name: Correr las pruebas con pytest
+        run: pytest
+
+      - name: Auditar dependencias con pip-audit
+        run: pip-audit -r requirements-dev.txt
