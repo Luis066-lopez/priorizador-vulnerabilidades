@@ -1,6 +1,6 @@
 # Herramientas de desarrollo, con versiones fijadas (==) para que todos usen las mismas.
 # Dependabot propone las actualizaciones una vez por semana.
 pytest==9.2.0
-ruff==0.17.3
+ruff==0.17.4
 pre-commit==4.7.0
 pip-audit==2.10.1
